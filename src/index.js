@@ -57,7 +57,8 @@ function displayForecast() {
   let forecastHtml = "";
 
   days.forEach(function (day) {
-    forecastHtml = forecastHtml +
+    forecastHtml =
+      forecastHtml +
       `
       <div class="weather-forecast-day">
         <div class="weather-forecast-date">${day}</div>
@@ -71,7 +72,7 @@ function displayForecast() {
       </div>
     `;
   });
-  
+
   let forecastElement = document.querySelector("#forecast");
   forecastElement.innerHTML = forecastHtml;
 }
