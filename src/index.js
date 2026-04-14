@@ -55,7 +55,7 @@ function handleSearchSubmit(event) {
 }
 
 function formatDay(timestamp) {
-  let date = new DOMExceptionate(timestamp * 1000);
+  let date = new Date(timestamp * 1000);
   let days = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
 
   return days[date.getDay()];
@@ -63,17 +63,15 @@ function formatDay(timestamp) {
 
 function getForecast(city) {
   let apiKey = "e2t5dd99b4cfa003ed9aaof63c44d73c";
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=-metric`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=-metric`;
   axios(apiUrl).then(displayForecast);
 }
 
 function displayForecast(response) {
-  console.log(response.data);
-
   let forecastHtml = "";
 
   response.data.daily.forEach(function (day, index) {
-    if (index < 6) {
+    if (index < 5) {
       forecastHtml =
         forecastHtml +
         `
@@ -84,7 +82,7 @@ function displayForecast(response) {
           <div class="weather-forecast-temperature">
             <strong>${Math.round(day.temperature.maximum)}°</strong>
           </div>
-          <div class="weather-forecast-temperature">${Math.round(day.temperature.minimum)}° </div>
+          <div class="weather-forecast-temperature">${Math.round(day.temperature.minimum)}°</div>
         </div>
       </div>
     `;
